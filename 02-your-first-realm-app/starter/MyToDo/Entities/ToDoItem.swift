@@ -51,6 +51,39 @@ import RealmSwift
 // MARK: - CRUD methods
 
 extension ToDoItem {
+  static func all(in realm: Realm = try! Realm()) -> Results<ToDoItem> {
+    return realm.objects(ToDoItem.self)
+      .sorted(byKeyPath: ToDoItem.Property.isCompleted.rawValue)
+  }
 
+  @discardableResult
+  static func add(text: String, in realm: Realm = try! Realm())
+    -> ToDoItem {
+    let item = ToDoItem(text)
+    try! realm.write {
+      realm.add(item)
+    }
+    return item
+  }
 
+  func toggleCompleted() {
+    guard let realm = realm else { return }
+    try! realm.write {
+      isCompleted = !isCompleted
+    }
+  }
+
+  func delete() {
+    guard let realm = realm else { return }
+    try! realm.write {
+      realm.delete(self)
+    }
+  }
+
+  func update(with text: String) {
+    guard let realm = realm else { return }
+    try! realm.write {
+      self.text = text
+    }
+  }
 }
