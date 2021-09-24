@@ -1,0 +1,7 @@
+use_frameworks!
+platform :ios, '12.1'
+inhibit_all_warnings!
+
+target "Chatterz" do
+  pod 'RealmSwift', '3.13.1'
+end

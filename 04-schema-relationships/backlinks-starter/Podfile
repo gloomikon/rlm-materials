@@ -1,0 +1,11 @@
+use_frameworks!
+platform :ios, '12.1'
+inhibit_all_warnings!
+
+target "TestBackLinks" do
+<<<<<<< HEAD
+  pod "RealmSwift", '3.13.1'
+=======
+  pod "RealmSwift", '3.11.1'
+>>>>>>> 2c08b0597eeb3ab0f18cca17d7889ba7141526d7
+end
